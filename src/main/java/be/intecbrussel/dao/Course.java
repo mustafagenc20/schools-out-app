@@ -1,21 +1,23 @@
 package be.intecbrussel.dao;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "course")
 public class Course {
 
     @Id
     @GeneratedValue
     private Long id;
     private String name;
+    @Column(length = 2000)
     private String description;
     private String code;
     private String imageURL;
     private boolean active;
+
+    @OneToMany
     private List<Module> modules;
 
     public Long getId() {

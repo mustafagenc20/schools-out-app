@@ -1,11 +1,10 @@
 package be.intecbrussel.dao;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "module")
 public class Module {
 
     @Id
@@ -13,7 +12,9 @@ public class Module {
     private Long id;
     private String name;
     private String description;
+    @ManyToOne
     private Course course;
+    @OneToMany
     private List<Exam> exams;
 
     public Long getId() {

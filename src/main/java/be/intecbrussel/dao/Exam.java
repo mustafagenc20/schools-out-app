@@ -1,21 +1,22 @@
 package be.intecbrussel.dao;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "exam")
 public class Exam {
 
     @Id
     @GeneratedValue
     private Long id;
     private String name;
+    @Column(length = 2000)
     private String description;
     private LocalDate date;
     private int weight;
     private int total;
+    @ManyToOne
     private Module module;
 
     public Long getId() {

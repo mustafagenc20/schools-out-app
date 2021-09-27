@@ -3,8 +3,10 @@ package be.intecbrussel.dao;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "user")
 public class User {
 
     @Id

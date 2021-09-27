@@ -1,10 +1,9 @@
 package be.intecbrussel.dao;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "person")
 public class Person {
 
     @Id
@@ -12,7 +11,8 @@ public class Person {
     private Integer id;
     private String firstName;
     private String familyName;
-//    private Gender gender;
+    private Gender gender;
+    @ManyToOne
     private Course course;
 
     public Integer getId() {
@@ -37,6 +37,14 @@ public class Person {
 
     public void setFamilyName(String familyName) {
         this.familyName = familyName;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 
     public Course getCourse() {
