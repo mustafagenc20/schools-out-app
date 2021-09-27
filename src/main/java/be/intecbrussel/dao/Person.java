@@ -1,30 +1,15 @@
 package be.intecbrussel.dao;
 
+import java.util.List;
+
 public class Person {
 
     private Integer id;
-    private String firstname;
-    private String familyname;
+    private String firstName;
+    private String familyName;
     private Gender gender;
-    private Course course;
+    private Course courseActive;
+    private List<Course> courseHistory;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public void setFamilyname(String familyname) {
-        this.familyname = familyname;
-    }
-
-    public void setGender(Gender gender) {
-        this.gender = gender;
-    }
-
-    public void setCourse(Course course) {
-        this.course = course;
-    }
 }
