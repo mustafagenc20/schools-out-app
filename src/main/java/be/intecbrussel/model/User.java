@@ -1,4 +1,4 @@
-package be.intecbrussel.dao;
+package be.intecbrussel.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

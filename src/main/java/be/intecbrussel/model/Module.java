@@ -1,4 +1,4 @@
-package be.intecbrussel.dao;
+package be.intecbrussel.model;
 
 import javax.persistence.*;
 import java.util.List;
@@ -14,7 +14,7 @@ public class Module {
     private String description;
     @ManyToOne
     private Course course;
-    @OneToMany
+    @OneToMany(mappedBy = "module")
     private List<Exam> exams;
 
     public Long getId() {
