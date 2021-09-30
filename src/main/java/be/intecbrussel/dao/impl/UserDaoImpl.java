@@ -1,21 +1,20 @@
 package be.intecbrussel.dao.impl;
 
-import be.intecbrussel.dao.CourseDao;
-import be.intecbrussel.model.Course;
+import be.intecbrussel.dao.UserDao;
+import be.intecbrussel.model.User;
 import be.intecbrussel.utils.EntityManagerProvider;
 
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
 import java.util.List;
 
-public class CourseDaoImpl implements CourseDao {
+public class UserDaoImpl implements UserDao {
     @Override
-    public void save(Course course) {
+    public void save(User user) {
         EntityManager em = EntityManagerProvider.getEntityManager();
         em.getTransaction().begin();
-        Course newCourse = findById(course.getId());
-        if (newCourse == null) {
-            em.merge(course);
+        User newUser = findById(user.getLogin());
+        if (newUser == null) {
+            em.merge(user);
             em.getTransaction().commit();
         } else {
             em.getTransaction().rollback();
@@ -25,30 +24,30 @@ public class CourseDaoImpl implements CourseDao {
     }
 
     @Override
-    public Course findById(Long id) {
+    public User findById(String login) {
         EntityManager em = EntityManagerProvider.getEntityManager();
         em.getTransaction().begin();
-        Course course = em.find(Course.class, id);
-        if (course == null) {
-        em.getTransaction().commit();
+        User user = em.find(User.class, login);
+        if (user == null) {
+            em.getTransaction().commit();
         } else {
             em.getTransaction().rollback();
             throw new UnsupportedOperationException("I don't wanna work without implementation!");
         }
         em.close();
-        return course;
+        return user;
     }
 
     @Override
-    public List<Course> findAll() {
+    public List<User> findAll() {
 
 //        String query = "SELECT e FROM Employee e WHERE e.employee = :employee";
 //        EntityManager em = EntityManagerProvider.getEntityManager();
 //
 //        em.getTransaction().begin();
-//        TypedQuery<Course> typedQuery = em.createQuery(query, Course.class);
-//        typedQuery.setParameter("course", );
-//        List<Course> employees = typedQuery.getResultList();
+//        TypedQuery<User> typedQuery = em.createQuery(query, User.class);
+//        typedQuery.setParameter("user", );
+//        List<User> employees = typedQuery.getResultList();
 //
 //        em.getTransaction().commit();
 //
@@ -57,12 +56,12 @@ public class CourseDaoImpl implements CourseDao {
     }
 
     @Override
-    public void update(Course course) {
+    public void update(User user) {
         EntityManager em = EntityManagerProvider.getEntityManager();
         em.getTransaction().begin();
-        Course newCourse = findById(course.getId());
-        if (newCourse != null) {
-            em.merge(course);
+        User newUser = findById(user.getLogin());
+        if (newUser != null) {
+            em.merge(user);
             em.getTransaction().commit();
         } else {
             em.getTransaction().rollback();
@@ -72,12 +71,12 @@ public class CourseDaoImpl implements CourseDao {
     }
 
     @Override
-    public void remove(Course course) {
+    public void remove(User user) {
         EntityManager em = EntityManagerProvider.getEntityManager();
         em.getTransaction().begin();
-        Course newCourse = findById(course.getId());
-        if (newCourse != null) {
-            em.remove(course);
+        User newUser = findById(user.getLogin());
+        if (newUser != null) {
+            em.remove(user);
             em.getTransaction().commit();
         } else {
             throw new UnsupportedOperationException("Entity doesn't exist!");
