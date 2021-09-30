@@ -22,7 +22,6 @@ public class Exam {
     @ManyToOne
     private Exam examGroup;
     @OneToMany
-//    @JoinColumn(name = "exam")
     private List<Exam> subExam;
     @OneToMany(mappedBy = "exam")
     private List<Grade> grades;
