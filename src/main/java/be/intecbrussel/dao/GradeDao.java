@@ -12,4 +12,5 @@ public interface GradeDao {
     void update(Grade grade);
     void remove(Grade grade);
     List<Grade> findAllGradesByPerson(Person person);
+    Double getAverageByPerson (Person person);
 }

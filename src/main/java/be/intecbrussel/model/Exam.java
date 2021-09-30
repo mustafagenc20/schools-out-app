@@ -19,12 +19,12 @@ public class Exam {
     private int total;
     @ManyToOne
     private Module module;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Exam examGroup;
     @OneToMany
     private List<Exam> subExam;
-    @OneToMany(mappedBy = "exam")
-    private List<Grade> grades;
+//    @OneToMany(mappedBy = "exam")
+//    private List<Grade> grades;
 
     public Long getId() {
         return id;
@@ -98,11 +98,24 @@ public class Exam {
         this.subExam = subExam;
     }
 
-    public List<Grade> getGrades() {
-        return grades;
-    }
+//    public List<Grade> getGrades() {
+//        return grades;
+//    }
+//
+//    public void setGrades(List<Grade> grades) {
+//        this.grades = grades;
+//    }
 
-    public void setGrades(List<Grade> grades) {
-        this.grades = grades;
+    @Override
+    public String toString() {
+        return "Exam{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", date=" + date +
+                ", weight=" + weight +
+                ", total=" + total +
+                ", module=" + module +
+                '}';
     }
 }

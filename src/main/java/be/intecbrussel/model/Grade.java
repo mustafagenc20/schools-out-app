@@ -89,7 +89,8 @@ public class Grade {
     public String toString() {
         return "Grade{" +
                 "id=" + id +
-                ", person=" + person.getId() +
+                ", person=" + person +
+                ", exam=" + exam +
                 ", gradeValue=" + gradeValue +
                 ", comment='" + comment + '\'' +
                 ", absent=" + absent +

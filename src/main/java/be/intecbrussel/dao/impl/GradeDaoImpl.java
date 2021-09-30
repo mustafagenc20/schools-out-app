@@ -74,4 +74,13 @@ public class GradeDaoImpl implements GradeDao {
         em.close();
         return gradeList;
     }
+
+    public Double getAverageByPerson(Person person){
+        List<Grade> grades = findAllGradesByPerson(person);
+
+        return grades.stream()
+                .mapToDouble(grade -> grade.getExam().getWeight())
+                .average().getAsDouble();
+
+    }
 }
