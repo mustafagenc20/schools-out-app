@@ -1,6 +1,9 @@
 package be.intecbrussel.dao;
 
 import be.intecbrussel.model.Module;
+import be.intecbrussel.model.Person;
+
+import java.util.List;
 
 public interface ModuleDao {
 
@@ -8,4 +11,5 @@ public interface ModuleDao {
     Module findById(Long id);
     void update(Module module);
     void remove(Module module);
+    List<Module> findAll();
 }

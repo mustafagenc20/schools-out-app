@@ -2,8 +2,11 @@ package be.intecbrussel.dao.impl;
 
 import be.intecbrussel.dao.CourseDao;
 import be.intecbrussel.model.Course;
+import be.intecbrussel.model.Person;
 import be.intecbrussel.utils.EntityManagerProvider;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 public class CourseDaoImpl implements CourseDao {
     @Override
@@ -58,5 +61,17 @@ public class CourseDaoImpl implements CourseDao {
             throw new UnsupportedOperationException("Entity doesn't exist!");
         }
         em.close();
+    }
+
+    @Override
+    public List<Course> findAll() {
+        String query = "Select p from Course p";
+        EntityManager em = EntityManagerProvider.getEntityManager();
+        em.getTransaction().begin();
+        TypedQuery<Course> typedQuery = em.createQuery(query, Course.class);
+        List<Course> courseList = typedQuery.getResultList();
+        em.getTransaction().commit();
+        em.close();
+        return courseList;
     }
 }

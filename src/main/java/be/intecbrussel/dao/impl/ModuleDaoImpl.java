@@ -2,8 +2,11 @@ package be.intecbrussel.dao.impl;
 
 import be.intecbrussel.dao.ModuleDao;
 import be.intecbrussel.model.Module;
+import be.intecbrussel.model.Person;
 import be.intecbrussel.utils.EntityManagerProvider;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 public class ModuleDaoImpl implements ModuleDao {
 
@@ -53,11 +56,23 @@ public class ModuleDaoImpl implements ModuleDao {
         em.getTransaction().begin();
         Module newModule = findById(module.getId());
         if (newModule != null) {
-            em.remove(module);
+            em.remove(module.getId());
             em.getTransaction().commit();
         } else {
             throw new UnsupportedOperationException("Entity doesn't exist!");
         }
         em.close();
+    }
+
+    @Override
+    public List<Module> findAll() {
+        String query = "Select p from Module p";
+        EntityManager em = EntityManagerProvider.getEntityManager();
+        em.getTransaction().begin();
+        TypedQuery<Module> typedQuery = em.createQuery(query, Module.class);
+        List<Module> moduleList = typedQuery.getResultList();
+        em.getTransaction().commit();
+        em.close();
+        return moduleList;
     }
 }

@@ -15,7 +15,7 @@ public class Module {
     @ManyToOne
     @JoinColumn(name = "course_id")
     private Course course;
-    @OneToMany(mappedBy = "module")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "module")
     private List<Exam> exams;
 
     public Long getId() {

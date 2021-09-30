@@ -21,17 +21,6 @@ public class Person {
     @JoinTable(name = "person__course_history", joinColumns = @JoinColumn(name = "history_of_course"))
     private List<Course> courseHistory;
 
-//    @OneToMany (mappedBy = "person")
-//    private List<Grade> grades;
-//
-//    public List<Grade> getGrades() {
-//        return grades;
-//    }
-//
-//    public void setGrades(List<Grade> grades) {
-//        this.grades = grades;
-//    }
-
     public Integer getId() {
         return id;
     }

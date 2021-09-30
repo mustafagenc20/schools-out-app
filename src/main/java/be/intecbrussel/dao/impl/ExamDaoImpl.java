@@ -2,8 +2,11 @@ package be.intecbrussel.dao.impl;
 
 import be.intecbrussel.dao.ExamDao;
 import be.intecbrussel.model.Exam;
+import be.intecbrussel.model.Person;
 import be.intecbrussel.utils.EntityManagerProvider;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 public class ExamDaoImpl implements ExamDao {
     @Override
@@ -58,5 +61,17 @@ public class ExamDaoImpl implements ExamDao {
             throw new UnsupportedOperationException("Entity doesn't exist!");
         }
         em.close();
+    }
+
+    @Override
+    public List<Exam> findAll() {
+        String query = "Select p from Exam p";
+        EntityManager em = EntityManagerProvider.getEntityManager();
+        em.getTransaction().begin();
+        TypedQuery<Exam> typedQuery = em.createQuery(query, Exam.class);
+        List<Exam> examList = typedQuery.getResultList();
+        em.getTransaction().commit();
+        em.close();
+        return examList;
     }
 }

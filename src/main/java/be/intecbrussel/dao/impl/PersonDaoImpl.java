@@ -3,7 +3,10 @@ package be.intecbrussel.dao.impl;
 import be.intecbrussel.dao.PersonDao;
 import be.intecbrussel.model.Person;
 import be.intecbrussel.utils.EntityManagerProvider;
+
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 public class PersonDaoImpl implements PersonDao {
 
@@ -26,7 +29,7 @@ public class PersonDaoImpl implements PersonDao {
             em.getTransaction().commit();
         } else {
             em.getTransaction().rollback();
-            throw new UnsupportedOperationException("I don't wanna work without implementation!");
+            throw new UnsupportedOperationException("Entity doesn't exist!");
         }
         em.close();
         return person;
@@ -61,5 +64,17 @@ public class PersonDaoImpl implements PersonDao {
         }
         em.close();
 
+    }
+
+    @Override
+    public List<Person> findAll() {
+        String query = "Select p from Person p";
+        EntityManager em = EntityManagerProvider.getEntityManager();
+        em.getTransaction().begin();
+        TypedQuery<Person> typedQuery = em.createQuery(query, Person.class);
+        List<Person> personList = typedQuery.getResultList();
+        em.getTransaction().commit();
+        em.close();
+        return personList;
     }
 }

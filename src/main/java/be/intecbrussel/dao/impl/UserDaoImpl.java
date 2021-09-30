@@ -1,9 +1,12 @@
 package be.intecbrussel.dao.impl;
 
 import be.intecbrussel.dao.UserDao;
+import be.intecbrussel.model.Person;
 import be.intecbrussel.model.User;
 import be.intecbrussel.utils.EntityManagerProvider;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 
 public class UserDaoImpl implements UserDao {
@@ -61,5 +64,17 @@ public class UserDaoImpl implements UserDao {
             throw new UnsupportedOperationException("Entity doesn't exist!");
         }
         em.close();
+    }
+
+    @Override
+    public List<User> findAll() {
+        String query = "Select p from User p";
+        EntityManager em = EntityManagerProvider.getEntityManager();
+        em.getTransaction().begin();
+        TypedQuery<User> typedQuery = em.createQuery(query, User.class);
+        List<User> userList = typedQuery.getResultList();
+        em.getTransaction().commit();
+        em.close();
+        return userList;
     }
 }

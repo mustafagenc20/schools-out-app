@@ -2,8 +2,11 @@ package be.intecbrussel.dao.impl;
 
 import be.intecbrussel.dao.GradeDao;
 import be.intecbrussel.model.Grade;
+import be.intecbrussel.model.Person;
 import be.intecbrussel.utils.EntityManagerProvider;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 public class GradeDaoImpl implements GradeDao {
     @Override
@@ -58,5 +61,17 @@ public class GradeDaoImpl implements GradeDao {
             throw new UnsupportedOperationException("Entity doesn't exist!");
         }
         em.close();
+    }
+
+    @Override
+    public List<Grade> findAll() {
+        String query = "Select p from Grade p";
+        EntityManager em = EntityManagerProvider.getEntityManager();
+        em.getTransaction().begin();
+        TypedQuery<Grade> typedQuery = em.createQuery(query, Grade.class);
+        List<Grade> gradeList = typedQuery.getResultList();
+        em.getTransaction().commit();
+        em.close();
+        return gradeList;
     }
 }

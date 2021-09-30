@@ -1,6 +1,9 @@
 package be.intecbrussel.dao;
 
 import be.intecbrussel.model.Course;
+import be.intecbrussel.model.Person;
+
+import java.util.List;
 
 public interface CourseDao {
 
@@ -8,4 +11,5 @@ public interface CourseDao {
     Course findById(Long id);
     void update(Course course);
     void remove(Course course);
+    List<Course> findAll();
 }

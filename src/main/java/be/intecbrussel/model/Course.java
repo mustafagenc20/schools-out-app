@@ -17,7 +17,7 @@ public class Course {
     private String imageURL;
     private boolean active;
 
-    @OneToMany(mappedBy = "course")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
     private List<Module> modules;
 
     public Long getId() {

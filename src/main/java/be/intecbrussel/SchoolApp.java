@@ -23,54 +23,63 @@ public class SchoolApp {
         GradeDao gradeDao = new GradeDaoImpl();
 
 
-        Person person = new Person();
-        person.setFirstName("Jonas");
-        person.setFamilyName("Genc");
-        person.setGender(Gender.MALE);
+//        Person person = new Person();
+//        person.setFirstName("Jonas");
+//        person.setFamilyName("Genc");
+//        person.setGender(Gender.MALE);
+//
+//        person = personDao.save(person);
+//
+//        User user = new User();
+//        user.setLogin("Admin9");
+//        user.setPasswordhash("12323");
+//        user.setPerson(person);
+//        user.setActive(true);
+//
+//        userDao.save(user);
 
-        person = personDao.save(person);
+//        Course course = new Course();
+//        course.setName("WD 3");
+//        course.setDescription("Web Development");
+//        course.setCode("WD");
+//        course.setActive(true);
+//
+//
+//        course = courseDao.save(course);
+//
+//        Module module = new Module();
+//        module.setDescription("Bootstrap");
+//        module.setName("CSS");
+//        module.setCourse(course);
+//
+//
+//        module = moduleDao.save(module);
+//
+//        Exam exam = new Exam();
+//        exam.setName("CSS1");
+//        exam.setDate(LocalDate.now());
+//        exam.setDescription("qwert");
+//
+//        exam.setModule(module);
+//        exam = examDao.save(exam);
+//
+//        Grade grade = new Grade();
+//        grade.setExam(exam);
+//        grade.setAbsent(true);
+//        grade.setPerson(person);
+//        grade.setDate(LocalDate.now());
+//        grade.setComment("This is a comment");
+//
+//        gradeDao.save(grade);
 
-        User user = new User();
-        user.setLogin("Admin5");
-        user.setPasswordhash("1234523");
-        user.setPerson(person);
-        user.setActive(true);
+//        <--- Delete --->
 
-        userDao.save(user);
-////        personDao.remove(personDao.findById(3));
-////        userDao.remove(userDao.findById("Admin"));
-
-        Course course = new Course();
-        course.setDescription("Web Development");
-        course.setCode("WD");
-        course.setActive(true);
-
-        course = courseDao.save(course);
-
-        Module module = new Module();
-        module.setDescription("Bootstrap");
-        module.setName("CSS");
-        module.setCourse(course);
-
-
-        module = moduleDao.save(module);
-
-        Exam exam = new Exam();
-        exam.setName("CSS1");
-        exam.setDate(LocalDate.now());
-        exam.setDescription("qwert");
-
-        exam.setModule(module);
-        exam = examDao.save(exam);
-
-        Grade grade = new Grade();
-        grade.setExam(exam);
-        grade.setAbsent(true);
-        grade.setPerson(person);
-        grade.setDate(LocalDate.now());
-        grade.setComment("This is a comment");
-
-        gradeDao.save(grade);
+//        personDao.remove(personDao.findById(6));
+//        userDao.remove(userDao.findById("Admin"));
+//        gradeDao.remove(gradeDao.findById(5L));
+//        courseDao.remove(courseDao.findById(2L));
+//        moduleDao.remove(3L);
+        personDao.findAll().forEach(person -> System.out.println(person));
 
     }
 }
