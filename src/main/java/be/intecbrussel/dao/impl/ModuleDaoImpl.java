@@ -12,19 +12,13 @@ import java.util.List;
 public class ModuleDaoImpl implements ModuleDao {
 
     @Override
-    public void save(Module module) {
+    public Module save(Module module) {
         EntityManager em = EntityManagerProvider.getEntityManager();
         em.getTransaction().begin();
-        Module newModule = findById(module.getId());
-        if (newModule == null) {
-            em.merge(module);
-            em.getTransaction().commit();
-        } else {
-            em.getTransaction().rollback();
-            throw new UnsupportedOperationException("Entity is already exist!");
-        }
+        Module newModule = em.merge(module);
+        em.getTransaction().commit();
         em.close();
-
+        return newModule;
     }
 
     @Override
@@ -32,7 +26,7 @@ public class ModuleDaoImpl implements ModuleDao {
         EntityManager em = EntityManagerProvider.getEntityManager();
         em.getTransaction().begin();
         Module module = em.find(Module.class, id);
-        if (module == null) {
+        if (module != null) {
             em.getTransaction().commit();
         } else {
             em.getTransaction().rollback();
@@ -42,10 +36,6 @@ public class ModuleDaoImpl implements ModuleDao {
         return module;
     }
 
-    @Override
-    public List<Module> findAll() {
-        return null;
-    }
 
     @Override
     public void update(Module module) {

@@ -13,6 +13,7 @@ public class Module {
     private String name;
     private String description;
     @ManyToOne
+    @JoinColumn(name = "course_id")
     private Course course;
     @OneToMany(mappedBy = "module")
     private List<Exam> exams;

@@ -12,6 +12,7 @@ public class Person {
     private String firstName;
     private String familyName;
     private Gender gender;
+
     @ManyToOne
     private Course course;
 
@@ -46,6 +47,7 @@ public class Person {
     public void setGender(Gender gender) {
         this.gender = gender;
     }
+
 
     public Course getCourse() {
         return course;

@@ -10,18 +10,13 @@ import java.util.List;
 public class PersonDaoImpl implements PersonDao {
 
     @Override
-    public void save(Person person) {
+    public Person save(Person person) {
         EntityManager em = EntityManagerProvider.getEntityManager();
         em.getTransaction().begin();
-        Person newPerson = findById(person.getId());
-        if (newPerson == null) {
-            em.merge(person);
-            em.getTransaction().commit();
-        } else {
-            em.getTransaction().rollback();
-            throw new UnsupportedOperationException("Entity is already exist!");
-        }
+        Person newPerson = em.merge(person);
+        em.getTransaction().commit();
         em.close();
+        return newPerson;
     }
 
     @Override
@@ -29,7 +24,7 @@ public class PersonDaoImpl implements PersonDao {
         EntityManager em = EntityManagerProvider.getEntityManager();
         em.getTransaction().begin();
         Person person = em.find(Person.class, id);
-        if (person == null) {
+        if (person != null) {
             em.getTransaction().commit();
         } else {
             em.getTransaction().rollback();
@@ -37,11 +32,6 @@ public class PersonDaoImpl implements PersonDao {
         }
         em.close();
         return person;
-    }
-
-    @Override
-    public List<Person> findAll() {
-        return null;
     }
 
     @Override

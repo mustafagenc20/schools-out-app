@@ -1,9 +1,6 @@
 package be.intecbrussel.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "user")
@@ -13,7 +10,10 @@ public class User {
     private String login;
     private String passwordhash;
     private boolean active;
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "person_id")
     @OneToOne
+//    @MapsId
     private Person person;
 
     public String getLogin() {

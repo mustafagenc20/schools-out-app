@@ -10,18 +10,13 @@ import java.util.List;
 
 public class CourseDaoImpl implements CourseDao {
     @Override
-    public void save(Course course) {
+    public Course save(Course course) {
         EntityManager em = EntityManagerProvider.getEntityManager();
         em.getTransaction().begin();
-        Course newCourse = findById(course.getId());
-        if (newCourse == null) {
-            em.merge(course);
-            em.getTransaction().commit();
-        } else {
-            em.getTransaction().rollback();
-            throw new UnsupportedOperationException("Entity is already exist!");
-        }
+        Course newCourse = em.merge(course);
+        em.getTransaction().commit();
         em.close();
+        return newCourse;
     }
 
     @Override
@@ -29,31 +24,14 @@ public class CourseDaoImpl implements CourseDao {
         EntityManager em = EntityManagerProvider.getEntityManager();
         em.getTransaction().begin();
         Course course = em.find(Course.class, id);
-        if (course == null) {
-        em.getTransaction().commit();
+        if (course != null) {
+            em.getTransaction().commit();
         } else {
             em.getTransaction().rollback();
             throw new UnsupportedOperationException("I don't wanna work without implementation!");
         }
         em.close();
         return course;
-    }
-
-    @Override
-    public List<Course> findAll() {
-
-//        String query = "SELECT e FROM Employee e WHERE e.employee = :employee";
-//        EntityManager em = EntityManagerProvider.getEntityManager();
-//
-//        em.getTransaction().begin();
-//        TypedQuery<Course> typedQuery = em.createQuery(query, Course.class);
-//        typedQuery.setParameter("course", );
-//        List<Course> employees = typedQuery.getResultList();
-//
-//        em.getTransaction().commit();
-//
-//        em.close();
-        return null;
     }
 
     @Override

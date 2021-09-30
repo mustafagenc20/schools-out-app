@@ -68,11 +68,11 @@ public class Course {
         this.active = active;
     }
 
-    public List<Module> getModules() {
-        return modules;
-    }
-
-    public void setModules(List<Module> modules) {
-        this.modules = modules;
-    }
+//    public List<Module> getModules() {
+//        return modules;
+//    }
+//
+//    public void setModules(List<Module> modules) {
+//        this.modules = modules;
+//    }
 }

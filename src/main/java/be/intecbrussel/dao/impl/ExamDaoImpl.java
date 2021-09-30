@@ -9,18 +9,13 @@ import java.util.List;
 
 public class ExamDaoImpl implements ExamDao {
     @Override
-    public void save(Exam exam) {
+    public Exam save(Exam exam) {
         EntityManager em = EntityManagerProvider.getEntityManager();
         em.getTransaction().begin();
-        Exam newExam = findById(exam.getId());
-        if (newExam == null) {
-            em.merge(exam);
-            em.getTransaction().commit();
-        } else {
-            em.getTransaction().rollback();
-            throw new UnsupportedOperationException("Entity is already exist!");
-        }
+        Exam newExam = em.merge(exam);
+        em.getTransaction().commit();
         em.close();
+        return newExam;
     }
 
     @Override
@@ -28,7 +23,7 @@ public class ExamDaoImpl implements ExamDao {
         EntityManager em = EntityManagerProvider.getEntityManager();
         em.getTransaction().begin();
         Exam exam = em.find(Exam.class, id);
-        if (exam == null) {
+        if (exam != null) {
             em.getTransaction().commit();
         } else {
             em.getTransaction().rollback();
@@ -38,22 +33,6 @@ public class ExamDaoImpl implements ExamDao {
         return exam;
     }
 
-    @Override
-    public List<Exam> findAll() {
-
-//        String query = "SELECT e FROM Employee e WHERE e.employee = :employee";
-//        EntityManager em = EntityManagerProvider.getEntityManager();
-//
-//        em.getTransaction().begin();
-//        TypedQuery<Exam> typedQuery = em.createQuery(query, Exam.class);
-//        typedQuery.setParameter("Exam", );
-//        List<Exam> employees = typedQuery.getResultList();
-//
-//        em.getTransaction().commit();
-//
-//        em.close();
-        return null;
-    }
 
     @Override
     public void update(Exam exam) {

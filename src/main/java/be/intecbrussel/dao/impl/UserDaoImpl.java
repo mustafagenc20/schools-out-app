@@ -9,18 +9,13 @@ import java.util.List;
 
 public class UserDaoImpl implements UserDao {
     @Override
-    public void save(User user) {
+    public User save(User user) {
         EntityManager em = EntityManagerProvider.getEntityManager();
         em.getTransaction().begin();
-        User newUser = findById(user.getLogin());
-        if (newUser == null) {
-            em.merge(user);
-            em.getTransaction().commit();
-        } else {
-            em.getTransaction().rollback();
-            throw new UnsupportedOperationException("Entity is already exist!");
-        }
+        User newUser = em.merge(user);
+        em.getTransaction().commit();
         em.close();
+        return newUser;
     }
 
     @Override
@@ -28,7 +23,7 @@ public class UserDaoImpl implements UserDao {
         EntityManager em = EntityManagerProvider.getEntityManager();
         em.getTransaction().begin();
         User user = em.find(User.class, login);
-        if (user == null) {
+        if (user != null) {
             em.getTransaction().commit();
         } else {
             em.getTransaction().rollback();
@@ -38,22 +33,6 @@ public class UserDaoImpl implements UserDao {
         return user;
     }
 
-    @Override
-    public List<User> findAll() {
-
-//        String query = "SELECT e FROM Employee e WHERE e.employee = :employee";
-//        EntityManager em = EntityManagerProvider.getEntityManager();
-//
-//        em.getTransaction().begin();
-//        TypedQuery<User> typedQuery = em.createQuery(query, User.class);
-//        typedQuery.setParameter("user", );
-//        List<User> employees = typedQuery.getResultList();
-//
-//        em.getTransaction().commit();
-//
-//        em.close();
-        return null;
-    }
 
     @Override
     public void update(User user) {
@@ -76,6 +55,7 @@ public class UserDaoImpl implements UserDao {
         em.getTransaction().begin();
         User newUser = findById(user.getLogin());
         if (newUser != null) {
+            user.setPerson(null);
             em.remove(user);
             em.getTransaction().commit();
         } else {
