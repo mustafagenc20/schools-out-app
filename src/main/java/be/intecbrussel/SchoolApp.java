@@ -68,6 +68,7 @@ public class SchoolApp {
 //        grade.setPerson(person);
 //        grade.setDate(LocalDate.now());
 //        grade.setComment("This is a comment");
+//        grade.setGradeValue();
 //
 //        gradeDao.save(grade);
 
@@ -82,7 +83,11 @@ public class SchoolApp {
 //        <--- Find all --->
 //        personDao.findAll().forEach(person -> System.out.println(person));
 
-        courseDao.findAllCourseByActive().forEach(course -> System.out.println(course));
+//        courseDao.findAllCourseByActive().forEach(course -> System.out.println(course));
+
+        Person person = new Person();
+        person.setId(17);
+        gradeDao.findAllGradesByPerson(person).forEach(grade -> System.out.println(grade));
 
     }
 }

@@ -64,8 +64,8 @@ public class GradeDaoImpl implements GradeDao {
     }
 
     @Override
-    public List<Grade> findAll() {
-        String query = "Select p from Grade p";
+    public List<Grade> findAllGradesByPerson(Person person) {
+        String query = "Select p from Grade p where p.person.id = " + person.getId();
         EntityManager em = EntityManagerProvider.getEntityManager();
         em.getTransaction().begin();
         TypedQuery<Grade> typedQuery = em.createQuery(query, Grade.class);

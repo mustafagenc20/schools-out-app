@@ -11,5 +11,5 @@ public interface GradeDao {
     Grade findById(Long id);
     void update(Grade grade);
     void remove(Grade grade);
-    List<Grade> findAll();
+    List<Grade> findAllGradesByPerson(Person person);
 }
