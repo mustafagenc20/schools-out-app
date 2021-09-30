@@ -21,31 +21,30 @@ public class SchoolApp {
         PersonDao personDao = new PersonDaoImpl();
         UserDao userDao = new UserDaoImpl();
         GradeDao gradeDao = new GradeDaoImpl();
-
-
-//        Person person = new Person();
-//        person.setFirstName("Jonas");
-//        person.setFamilyName("Genc");
-//        person.setGender(Gender.MALE);
 //
-//        person = personDao.save(person);
 //
-//        User user = new User();
-//        user.setLogin("Admin9");
-//        user.setPasswordhash("12323");
-//        user.setPerson(person);
-//        user.setActive(true);
-//
-//        userDao.save(user);
-
 //        Course course = new Course();
 //        course.setName("WD 3");
 //        course.setDescription("Web Development");
 //        course.setCode("WD");
 //        course.setActive(true);
-//
-//
 //        course = courseDao.save(course);
+//
+//        Person person = new Person();
+//        person.setFirstName("Mustafa");
+//        person.setFamilyName("Genc");
+//        person.setGender(Gender.MALE);
+//
+//        person.setCourseActive(course);
+//        person = personDao.save(person);
+//
+//        User user = new User();
+//        user.setLogin("Admin4");
+//        user.setPasswordhash("12323");
+//        user.setPerson(person);
+//        user.setActive(true);
+//
+//        userDao.save(user);
 //
 //        Module module = new Module();
 //        module.setDescription("Bootstrap");
@@ -79,7 +78,11 @@ public class SchoolApp {
 //        gradeDao.remove(gradeDao.findById(5L));
 //        courseDao.remove(courseDao.findById(2L));
 //        moduleDao.remove(3L);
-        personDao.findAll().forEach(person -> System.out.println(person));
+
+//        <--- Find all --->
+//        personDao.findAll().forEach(person -> System.out.println(person));
+
+        personDao.makePassive(7);
 
     }
 }

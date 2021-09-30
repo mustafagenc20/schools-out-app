@@ -17,8 +17,8 @@ public class Person {
     @ManyToOne
     private Course courseActive;
 
-    @ManyToMany
-    @JoinTable(name = "person__course_history", joinColumns = @JoinColumn(name = "history_of_course"))
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "person__course_history", joinColumns = @JoinColumn(name = "person_id"))
     private List<Course> courseHistory;
 
     public Integer getId() {

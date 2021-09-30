@@ -10,4 +10,6 @@ public interface PersonDao {
     void update(Person person);
     void remove(Person person);
     List<Person> findAll();
+    Person makePassive(Integer id);
+
 }

@@ -1,6 +1,8 @@
 package be.intecbrussel.dao.impl;
 
+import be.intecbrussel.dao.CourseDao;
 import be.intecbrussel.dao.PersonDao;
+import be.intecbrussel.model.Course;
 import be.intecbrussel.model.Person;
 import be.intecbrussel.utils.EntityManagerProvider;
 
@@ -76,5 +78,27 @@ public class PersonDaoImpl implements PersonDao {
         em.getTransaction().commit();
         em.close();
         return personList;
+    }
+
+    @Override
+    public Person makePassive(Integer id) {
+        EntityManager em = EntityManagerProvider.getEntityManager();
+        em.getTransaction().begin();
+        Person newPerson = findById(id);
+        CourseDao courseDao = new CourseDaoImpl();
+        Course course = courseDao.findById(newPerson.getCourseActive().getId());
+        if (newPerson != null) {
+            course.setActive(false);
+            courseDao.update(course);
+            newPerson.setCourseActive(null);
+            newPerson.getCourseHistory().add(course);
+            newPerson = em.merge(newPerson);
+            em.getTransaction().commit();
+        } else {
+            em.getTransaction().rollback();
+            throw new UnsupportedOperationException("Entity doesn't exist!");
+        }
+        em.close();
+        return newPerson;
     }
 }

@@ -11,5 +11,5 @@ public interface CourseDao {
     Course findById(Long id);
     void update(Course course);
     void remove(Course course);
-    List<Course> findAll();
+    List<Course> findAllCourseByActive();
 }
