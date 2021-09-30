@@ -65,7 +65,7 @@ public class CourseDaoImpl implements CourseDao {
 
     @Override
     public List<Course> findAllCourseByActive() {
-        String query = "Select c from Course c where active = :true";
+        String query = "Select c from Course c where c.active = TRUE";
         EntityManager em = EntityManagerProvider.getEntityManager();
         em.getTransaction().begin();
         TypedQuery<Course> typedQuery = em.createQuery(query, Course.class);

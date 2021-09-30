@@ -82,7 +82,7 @@ public class SchoolApp {
 //        <--- Find all --->
 //        personDao.findAll().forEach(person -> System.out.println(person));
 
-        personDao.makePassive(7);
+        courseDao.findAllCourseByActive().forEach(course -> System.out.println(course));
 
     }
 }

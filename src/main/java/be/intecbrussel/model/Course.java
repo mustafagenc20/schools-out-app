@@ -68,11 +68,15 @@ public class Course {
         this.active = active;
     }
 
-//    public List<Module> getModules() {
-//        return modules;
-//    }
-//
-//    public void setModules(List<Module> modules) {
-//        this.modules = modules;
-//    }
+    @Override
+    public String toString() {
+        return "Course{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", code='" + code + '\'' +
+                ", imageURL='" + imageURL + '\'' +
+                ", active=" + active +
+                '}';
+    }
 }
