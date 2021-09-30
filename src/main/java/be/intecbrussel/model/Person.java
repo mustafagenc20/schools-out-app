@@ -1,6 +1,7 @@
 package be.intecbrussel.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "person")
@@ -14,7 +15,22 @@ public class Person {
     private Gender gender;
 
     @ManyToOne
-    private Course course;
+    private Course courseActive;
+
+    @ManyToMany
+    @JoinTable(name = "person__course_history", joinColumns = @JoinColumn(name = "history_of_course"))
+    private List<Course> courseHistory;
+
+//    @OneToMany (mappedBy = "person")
+//    private List<Grade> grades;
+//
+//    public List<Grade> getGrades() {
+//        return grades;
+//    }
+//
+//    public void setGrades(List<Grade> grades) {
+//        this.grades = grades;
+//    }
 
     public Integer getId() {
         return id;
@@ -49,11 +65,19 @@ public class Person {
     }
 
 
-    public Course getCourse() {
-        return course;
+    public Course getCourseActive() {
+        return courseActive;
     }
 
-    public void setCourse(Course course) {
-        this.course = course;
+    public void setCourseActive(Course course) {
+        this.courseActive = course;
+    }
+
+    public List<Course> getCourseHistory() {
+        return courseHistory;
+    }
+
+    public void setCourseHistory(List<Course> courseHistory) {
+        this.courseHistory = courseHistory;
     }
 }

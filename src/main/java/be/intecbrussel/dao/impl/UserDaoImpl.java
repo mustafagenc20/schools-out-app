@@ -3,9 +3,8 @@ package be.intecbrussel.dao.impl;
 import be.intecbrussel.dao.UserDao;
 import be.intecbrussel.model.User;
 import be.intecbrussel.utils.EntityManagerProvider;
-
 import javax.persistence.EntityManager;
-import java.util.List;
+
 
 public class UserDaoImpl implements UserDao {
     @Override

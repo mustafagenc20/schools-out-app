@@ -2,8 +2,6 @@ package be.intecbrussel.dao;
 
 import be.intecbrussel.model.Course;
 
-import java.util.List;
-
 public interface CourseDao {
 
     Course save(Course course);

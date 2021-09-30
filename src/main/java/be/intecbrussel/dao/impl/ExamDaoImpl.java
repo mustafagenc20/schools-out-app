@@ -3,9 +3,7 @@ package be.intecbrussel.dao.impl;
 import be.intecbrussel.dao.ExamDao;
 import be.intecbrussel.model.Exam;
 import be.intecbrussel.utils.EntityManagerProvider;
-
 import javax.persistence.EntityManager;
-import java.util.List;
 
 public class ExamDaoImpl implements ExamDao {
     @Override
@@ -27,12 +25,11 @@ public class ExamDaoImpl implements ExamDao {
             em.getTransaction().commit();
         } else {
             em.getTransaction().rollback();
-            throw new UnsupportedOperationException("I don't wanna work without implementation!");
+            throw new UnsupportedOperationException("Entity doesn't exist!");
         }
         em.close();
         return exam;
     }
-
 
     @Override
     public void update(Exam exam) {

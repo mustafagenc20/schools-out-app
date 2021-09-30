@@ -20,6 +20,7 @@ public class SchoolApp {
         ModuleDao moduleDao = new ModuleDaoImpl();
         PersonDao personDao = new PersonDaoImpl();
         UserDao userDao = new UserDaoImpl();
+        GradeDao gradeDao = new GradeDaoImpl();
 
 
         Person person = new Person();
@@ -36,8 +37,8 @@ public class SchoolApp {
         user.setActive(true);
 
         userDao.save(user);
-//        personDao.remove(personDao.findById(3));
-//        userDao.remove(userDao.findById("Admin"));
+////        personDao.remove(personDao.findById(3));
+////        userDao.remove(userDao.findById("Admin"));
 
         Course course = new Course();
         course.setDescription("Web Development");
@@ -60,7 +61,16 @@ public class SchoolApp {
         exam.setDescription("qwert");
 
         exam.setModule(module);
-        examDao.save(exam);
+        exam = examDao.save(exam);
+
+        Grade grade = new Grade();
+        grade.setExam(exam);
+        grade.setAbsent(true);
+        grade.setPerson(person);
+        grade.setDate(LocalDate.now());
+        grade.setComment("This is a comment");
+
+        gradeDao.save(grade);
 
     }
 }

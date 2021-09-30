@@ -2,6 +2,7 @@ package be.intecbrussel.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "exam")
@@ -18,6 +19,13 @@ public class Exam {
     private int total;
     @ManyToOne
     private Module module;
+    @ManyToOne
+    private Exam examGroup;
+    @OneToMany
+//    @JoinColumn(name = "exam")
+    private List<Exam> subExam;
+    @OneToMany(mappedBy = "exam")
+    private List<Grade> grades;
 
     public Long getId() {
         return id;
@@ -73,5 +81,29 @@ public class Exam {
 
     public void setModule(Module module) {
         this.module = module;
+    }
+
+    public Exam getExamGroup() {
+        return examGroup;
+    }
+
+    public void setExamGroup(Exam examGroup) {
+        this.examGroup = examGroup;
+    }
+
+    public List<Exam> getSubExam() {
+        return subExam;
+    }
+
+    public void setSubExam(List<Exam> subExam) {
+        this.subExam = subExam;
+    }
+
+    public List<Grade> getGrades() {
+        return grades;
+    }
+
+    public void setGrades(List<Grade> grades) {
+        this.grades = grades;
     }
 }

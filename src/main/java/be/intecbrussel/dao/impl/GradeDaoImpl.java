@@ -1,44 +1,43 @@
 package be.intecbrussel.dao.impl;
 
-import be.intecbrussel.dao.ModuleDao;
-import be.intecbrussel.model.Module;
+import be.intecbrussel.dao.GradeDao;
+import be.intecbrussel.model.Grade;
 import be.intecbrussel.utils.EntityManagerProvider;
 import javax.persistence.EntityManager;
 
-public class ModuleDaoImpl implements ModuleDao {
-
+public class GradeDaoImpl implements GradeDao {
     @Override
-    public Module save(Module module) {
+    public Grade save(Grade grade) {
         EntityManager em = EntityManagerProvider.getEntityManager();
         em.getTransaction().begin();
-        Module newModule = em.merge(module);
+        Grade newGrade = em.merge(grade);
         em.getTransaction().commit();
         em.close();
-        return newModule;
+        return newGrade;
     }
 
     @Override
-    public Module findById(Long id) {
+    public Grade findById(Long id) {
         EntityManager em = EntityManagerProvider.getEntityManager();
         em.getTransaction().begin();
-        Module module = em.find(Module.class, id);
-        if (module != null) {
+        Grade grade = em.find(Grade.class, id);
+        if (grade != null) {
             em.getTransaction().commit();
         } else {
             em.getTransaction().rollback();
             throw new UnsupportedOperationException("Entity doesn't exist!");
         }
         em.close();
-        return module;
+        return grade;
     }
 
     @Override
-    public void update(Module module) {
+    public void update(Grade grade) {
         EntityManager em = EntityManagerProvider.getEntityManager();
         em.getTransaction().begin();
-        Module newModule = findById(module.getId());
-        if (newModule != null) {
-            em.merge(module);
+        Grade newGrade = findById(grade.getId());
+        if (newGrade != null) {
+            em.merge(grade);
             em.getTransaction().commit();
         } else {
             em.getTransaction().rollback();
@@ -48,12 +47,12 @@ public class ModuleDaoImpl implements ModuleDao {
     }
 
     @Override
-    public void remove(Module module) {
+    public void remove(Grade grade) {
         EntityManager em = EntityManagerProvider.getEntityManager();
         em.getTransaction().begin();
-        Module newModule = findById(module.getId());
-        if (newModule != null) {
-            em.remove(module);
+        Grade newGrade = findById(grade.getId());
+        if (newGrade != null) {
+            em.remove(grade);
             em.getTransaction().commit();
         } else {
             throw new UnsupportedOperationException("Entity doesn't exist!");

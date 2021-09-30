@@ -3,10 +3,7 @@ package be.intecbrussel.dao.impl;
 import be.intecbrussel.dao.CourseDao;
 import be.intecbrussel.model.Course;
 import be.intecbrussel.utils.EntityManagerProvider;
-
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
-import java.util.List;
 
 public class CourseDaoImpl implements CourseDao {
     @Override
@@ -28,7 +25,7 @@ public class CourseDaoImpl implements CourseDao {
             em.getTransaction().commit();
         } else {
             em.getTransaction().rollback();
-            throw new UnsupportedOperationException("I don't wanna work without implementation!");
+            throw new UnsupportedOperationException("Entity doesn't exist!");
         }
         em.close();
         return course;

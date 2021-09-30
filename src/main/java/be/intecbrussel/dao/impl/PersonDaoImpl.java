@@ -3,9 +3,7 @@ package be.intecbrussel.dao.impl;
 import be.intecbrussel.dao.PersonDao;
 import be.intecbrussel.model.Person;
 import be.intecbrussel.utils.EntityManagerProvider;
-
 import javax.persistence.EntityManager;
-import java.util.List;
 
 public class PersonDaoImpl implements PersonDao {
 
