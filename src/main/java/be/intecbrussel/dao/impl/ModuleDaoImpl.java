@@ -36,18 +36,19 @@ public class ModuleDaoImpl implements ModuleDao {
     }
 
     @Override
-    public void update(Module module) {
+    public Module update(Module module) {
         EntityManager em = EntityManagerProvider.getEntityManager();
         em.getTransaction().begin();
         Module newModule = findById(module.getId());
         if (newModule != null) {
-            em.merge(module);
+            newModule = em.merge(module);
             em.getTransaction().commit();
         } else {
             em.getTransaction().rollback();
             throw new UnsupportedOperationException("Entity doesn't exist!");
         }
         em.close();
+        return newModule;
     }
 
     @Override

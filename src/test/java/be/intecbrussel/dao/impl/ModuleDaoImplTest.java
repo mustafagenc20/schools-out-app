@@ -25,14 +25,9 @@ public class ModuleDaoImplTest {
     EntityManager em;
     @Mock
     private ModuleDao moduleDao;
-    @Mock
     private Module module;
-    @InjectMocks
-    private ModuleDaoImpl moduleDaoImpl;
-/*    @Before
-    public void init() {
-        MockitoAnnotations.initMocks(this);
-    }*/
+
+
     @BeforeEach
     void init(){
         em = mock(EntityManager.class);
@@ -44,7 +39,7 @@ public class ModuleDaoImplTest {
         course.setActive(true);
 
         module = new Module();
-        module.setId(3L);
+        module.setId(1L);
         module.setDescription("module1");
         module.setName("MDL1");
         module.setCourse(course);
@@ -56,10 +51,8 @@ public class ModuleDaoImplTest {
     void saveTest(){
         Module mdl = mock(Module.class);
         when(moduleDao.save(Matchers.any(Module.class))).thenReturn(mdl);
-        Module moduleDao1 = moduleDao.save(module);
-        when(mdl.getId()).thenReturn(1L);
-        assertEquals(moduleDao1.getId(), module.getId());
-        assertEquals(moduleDao1.getId(), 1L);
+        Module savedModule = moduleDao.save(module);
+        assertEquals(savedModule.getId(), module.getId());
     }
 
     @Test
@@ -69,12 +62,16 @@ public class ModuleDaoImplTest {
     }
 
     @Test
-    void update(){
-        moduleDao.update(module);
+    void updateTest(){
+        Module mdl = mock(Module.class);
+        when(moduleDao.save(Matchers.any(Module.class))).thenReturn(mdl);
+        module.setDescription("updated");
+        Module updatedModule = moduleDao.save(module);
+        assertEquals("updated", updatedModule.getDescription());
     }
 
     @Test
-    void remove(){
+    void removeTest(){
         moduleDao.remove(module);
     }
 
