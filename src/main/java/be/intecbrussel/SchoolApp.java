@@ -32,7 +32,7 @@ public class SchoolApp {
         course = courseDao.save(course);
 
         Person person = new Person();
-//        person.setId(17);
+        person.setId(17);
         person.setFirstName("name4");
         person.setFamilyName("surname4");
         person.setGender(Gender.FEMALE);
