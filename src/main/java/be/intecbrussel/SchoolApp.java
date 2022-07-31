@@ -23,13 +23,13 @@ public class SchoolApp {
         GradeDao gradeDao = new GradeDaoImpl();
 
 
-//        Course course = new Course();
-////        course.setId(1L);
-//        course.setName("C#");
-//        course.setDescription("C# Developer");
-//        course.setCode("C#");
-//        course.setActive(true);
-//        course = courseDao.save(course);
+        Course course = new Course();
+//        course.setId(1L);
+        course.setName("C#");
+        course.setDescription("C# Developer");
+        course.setCode("C#");
+        course.setActive(true);
+        course = courseDao.save(course);
 //
 //        Person person = new Person();
 ////        person.setId(17);
