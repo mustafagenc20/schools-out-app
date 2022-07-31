@@ -30,12 +30,12 @@ public class SchoolApp {
         course.setCode("C#");
         course.setActive(true);
         course = courseDao.save(course);
-//
-//        Person person = new Person();
-////        person.setId(17);
-//        person.setFirstName("name4");
-//        person.setFamilyName("surname4");
-//        person.setGender(Gender.FEMALE);
+
+        Person person = new Person();
+//        person.setId(17);
+        person.setFirstName("name4");
+        person.setFamilyName("surname4");
+        person.setGender(Gender.FEMALE);
 //
 //        person.setCourseActive(course);
 //        person = personDao.save(person);
