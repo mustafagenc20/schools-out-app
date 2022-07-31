@@ -12,8 +12,8 @@ import java.time.LocalDate;
 
 public class SchoolApp {
     public static void main(String[] args) {
-//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("school-app");
-//        EntityManager em = emf.createEntityManager();
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("school-app");
+        EntityManager em = emf.createEntityManager();
 
         CourseDao courseDao = new CourseDaoImpl();
         ExamDao examDao = new ExamDaoImpl();
